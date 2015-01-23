@@ -47,6 +47,9 @@ function! neocomplete#mappings#define_default_mappings() "{{{
 endfunction"}}}
 
 function! neocomplete#mappings#auto_complete() "{{{
+  if &l:completefunc ==# 'neocomplete#complete#completefunc'
+    return "\<C-x>\<C-u>"
+  endif
   let neocomplete = neocomplete#get_current_neocomplete()
   let cur_text = neocomplete#get_cur_text(1)
   let complete_pos =

@@ -298,6 +298,7 @@ function! s:check_in_do_auto_complete() "{{{
 
   " Detect completefunc.
   if &l:completefunc != '' && &l:buftype =~ 'nofile'
+      \ && &l:completefunc !=# 'neocomplete#complete#completefunc'
     return 1
   endif
 
