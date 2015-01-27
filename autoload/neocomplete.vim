@@ -97,6 +97,8 @@ let g:neocomplete#ignore_composite_filetypes =
       \ get(g:, 'neocomplete#ignore_composite_filetypes', {})
 let g:neocomplete#ignore_source_files =
       \ get(g:, 'neocomplete#ignore_source_files', [])
+let g:neocomplete#use_completefunc =
+      \ get(g:, 'neocomplete#use_completefunc', 1)
 "}}}
 
 function! neocomplete#initialize() "{{{

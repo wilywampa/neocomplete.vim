@@ -59,9 +59,25 @@ function! neocomplete#mappings#auto_complete() "{{{
   let neocomplete.complete_str = base
 
   " Start auto complete.
-  call complete(complete_pos+1, neocomplete.candidates)
-  return ''
+  if g:neocomplete#use_completefunc
+    let s:start = complete_pos
+    let s:candidates = neocomplete.candidates
+    set completefunc=neocomplete#mappings#complete
+    return "\<C-x>\<C-u>"
+  else
+    call complete(complete_pos+1, neocomplete.candidates)
+    return ''
+  endif
 endfunction"}}}
+
+function! neocomplete#mappings#complete(findstart, base)
+  call neocomplete#mappings#auto_complete()
+  if a:findstart
+    return s:start
+  else
+    return {'words': s:candidates, 'refresh': 'always'}
+  endif
+endfunction
 
 function! neocomplete#mappings#manual_complete() "{{{
   let neocomplete = neocomplete#get_current_neocomplete()
