@@ -51,7 +51,7 @@ endfunction"}}}
 
 function! neocomplete#init#disable() "{{{
   if !neocomplete#is_enabled()
-    call neocomplete#init#enable()
+    return
   endif
 
   let s:is_enabled = 0
@@ -103,8 +103,8 @@ function! neocomplete#init#_autocmds() "{{{
             \ call neocomplete#handler#_restore_update_time()
     augroup END
   else
-    autocmd neocomplete CursorMovedI *
-          \ call neocomplete#handler#_do_auto_complete('CursorMovedI')
+    autocmd neocomplete TextChangedI *
+          \ call neocomplete#handler#_do_auto_complete('TextChangedI')
   endif
 
   if !g:neocomplete#enable_cursor_hold_i
